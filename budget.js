@@ -71,18 +71,13 @@ const data = [
     [ 'Wind EnergyTechnician', 56700 ]
 ]
 
-let totalAmount = document.getElementById('total-amount');
-let userAmount = document.getElementById('TD');
-const Grossmonthly = document.getElementById('GMI');
-let Jobs = document.getElementById('jop-options'); 
+let calculation;
 
-totalAmount = totalAmount.value; 
-if(tempAmount == "" || tempAmount < 0) {
-    errorMessage.classlist.remove("hide");
+let federalTax = {
+        tax: 0.12,
+        totalcost: function () {
+            var calculation = federalTax.tax * data[1][1]; 
+            return ('Total:', calculation)
+        }   
 }
-else {
-    errorMessage.classList.add("hide");
-    amount.innerHTML = tempAmount
-    Grossmonthly.innerText = tempAmount == 0
-
-}
+console.log("total:", calculation)
