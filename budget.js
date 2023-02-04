@@ -71,10 +71,18 @@ const data = [
     [ 'Wind EnergyTechnician', 56700 ]
 ]
 
-function myFunction([0][1]) {
-    data[0] = document.getElementById("Job").value
-}
+let totalAmount = document.getElementById('total-amount');
+let userAmount = document.getElementById('TD');
+const Grossmonthly = document.getElementById('GMI');
+let Jobs = document.getElementById('jop-options'); 
 
-function myFunction() {
-   data[1] = document.getElementById("Monthly").value
+totalAmount = totalAmount.value; 
+if(tempAmount == "" || tempAmount < 0) {
+    errorMessage.classlist.remove("hide");
+}
+else {
+    errorMessage.classList.add("hide");
+    amount.innerHTML = tempAmount
+    Grossmonthly.innerText = tempAmount == 0
+
 }
