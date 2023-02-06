@@ -70,14 +70,62 @@ const data = [
     [ 'Welder/Metal Specialist', 47250 ],
     [ 'Wind EnergyTechnician', 56700 ]
 ]
+const jobOptions = document.getElementById('Job-Options');
+const jobInput = document.getElementById('Job');
+const annualInput = document.getElementById('Annual');
+const monthlyInput = document.getElementById('Monthly');
+const federalInput = document.getElementById('federal');
+const statetaxesInput = document.getElementById('s-taxes');
+const socialInput = document.getElementById('social');
+const medicalInput = document.getElementById('medicare');
+const stateInput = document.getElementById('state');
+const retireInput = document.getElementById('retirement');
+const moremedicalInput = document.getElementById('Medical');
+const deductInput = document.getElementById('deductions');
+const gmiInput = document.getElementById('GMI');
+const tdInput = document.getElementById('TD');
+const totalInput = document.getElementById('total-amount');
 
-let calculation;
-
-let federalTax = {
-        tax: 0.12,
-        totalcost: function () {
-            var calculation = federalTax.tax * data[1][1]; 
-            return ('Total:', calculation)
-        }   
+for(job of data){
+    let newOption = document.createElement('option');
+    newOption.value = job[1];
+    newOption.innerText = job[0];
+    jobOptions.appendChild(newOption);
 }
-console.log("total:", calculation)
+
+jobOptions.addEventListener('change', calculate);
+
+function calculate(){
+    let grossAnnual = jobOptions.value,
+        grossMonthly = jobOptions.value / 12;
+    let TD = federalInput.value + statetaxesInput.value + socialInput.value + medicalInput.value + stateInput.value + retireInput.value + moremedicalInput.value;
+
+    jobInput.value = jobOptions.options[jobOptions.selectedIndex].text;
+    annualInput.value =  + grossAnnual;
+    monthlyInput.value =  + grossMonthly;
+    federalInput.value =  + (grossMonthly * .12).toFixed(2);
+    statetaxesInput.value = + (grossMonthly * .07).toFixed(2);
+    socialInput.value =  + (grossMonthly * .062).toFixed(2);
+    medicalInput.value = + (grossMonthly * .014).toFixed(2);
+    stateInput.value = + (grossMonthly * .01).toFixed(2);
+    retireInput.value =  + (grossMonthly * .05).toFixed(2);
+    moremedicalInput.value =+ (grossMonthly * 0 + 180).toFixed(2);
+    
+    // Total decuctions <----------------------------->
+    deductInput.value = (Number(federalInput.value) + Number(statetaxesInput.value) + Number(socialInput.value) + Number(medicalInput.value) + Number(stateInput.value) + Number(retireInput.value) + Number(moremedicalInput.value)).toFixed(2);
+
+    // calculation for the Net Montly 
+    gmiInput.value = grossMonthly;
+    tdInput.value = deductInput.value;
+    totalInput.value = Number(grossMonthly) - Number(deductInput.value);
+}
+
+// <option id="job-options" value="">Agricultural Engineer $56,700.00</option>
+// 
+// function myFunction() {
+//     data[0] = document.getElementById("Job").value
+// }
+
+// function myFunction() {
+//    data[1] = document.getElementById("Monthly").value
+// }
