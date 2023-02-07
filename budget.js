@@ -120,12 +120,3 @@ function calculate(){
     totalInput.value = Number(grossMonthly) - Number(deductInput.value);
 }
 
-// <option id="job-options" value="">Agricultural Engineer $56,700.00</option>
-// 
-// function myFunction() {
-//     data[0] = document.getElementById("Job").value
-// }
-
-// function myFunction() {
-//    data[1] = document.getElementById("Monthly").value
-// }
