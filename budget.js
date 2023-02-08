@@ -120,3 +120,25 @@ function calculate(){
     totalInput.value = Number(grossMonthly) - Number(deductInput.value);
 }
 
+
+const withdrawlInput = document.getElementById('Withdrawl');
+const depositsInput = document.getElementById('Deposit');
+const GrandTotalInput = document.getElementById('T-Balance')
+
+GrandTotalInput.addEventListener('input', addingtotal)
+
+function addingtotal() {
+    let sum = 0;
+    let total = document.querySelectorAll("Withdrawl");
+    for(let i = 0; i < withdrawlInput.length; i++) {
+        sum = sum + parseInt(Withdrawl[i].innerText);
+    }
+    console.log(sum)
+    const tbody = document.getElementById('Balance');
+    console.log(tbody)
+    const row = document.createElement("tr");
+    row.innerText = '<td> Gran - Total </td><td data-ns-test="grandTotal">' + sum + '</td>';
+    tbody.appendChild(row)
+}
+
+
