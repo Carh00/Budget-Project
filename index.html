@@ -13,13 +13,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="hero1">
         <div class="heroinfo">
-            <h1><link rel="stylesheet" href="index.html"> Job-A-Job</h1>
-            <div id="container">
+            <h1>
+                <link rel="stylesheet" href="index.html"> Job-A-Job
+            </h1>
+            <!-- <div id="container">
                 <div class="steam" id="steam1"> </div>
                 <div class="steam" id="steam2"> </div>
                 <div class="steam" id="steam3"> </div>
@@ -36,7 +42,7 @@
               
                 <div id="shadow"></div>
               </div>
-        </div>
+        </div> -->
     </header>
     <main>
         <section class="budget-container">
@@ -58,39 +64,42 @@
                 <div class="container">
                     <div class="info-container">
                         <h3>What is your career option? <input onclick="" type="text" id="Job"
-                                placeholder="Select a Job above">
+                                placeholder="Select a Job above" disabled>
                         </h3>
-                        <h3>Gross Annual Income? <input type="text" id="Annual" placeholder="Annual Income..."></h3>
-                        <h3>Gross Monthly Income? <input type="text" id="Monthly" placeholder="Montly Income"></h3>
+                        <h3>Gross Annual Income? <input type="text" id="Annual" placeholder="Annual Income..." disabled>
+                        </h3>
+                        <h3>Gross Monthly Income? <input type="text" id="Monthly" placeholder="Montly Income" disabled>
+                        </h3>
                     </div>
                 </div>
             </section>
             <section class="box5">
                 <div class="container">
                     <div class="info-container">
-                        <h3>Federal Taxes (12% * 0.12) <input type="text" id="federal" placeholder="$">
+                        <h3>Federal Taxes (12% * 0.12) <input type="text" id="federal" placeholder="$" disabled>
                         </h3>
-                        <h3>State Taxes (7% * .07) <input type="text" id="s-taxes" placeholder="$"></h3>
-                        <h3>Social Security (6.2% * .062) <input type="text" id="social" placeholder="$">
+                        <h3>State Taxes (7% * .07) <input type="text" id="s-taxes" placeholder="$" disabled></h3>
+                        <h3>Social Security (6.2% * .062) <input type="text" id="social" placeholder="$" disabled>
                         </h3>
-                        <h3>Medicare (1.45% * .014) <input type="text" id="medicare" placeholder="$"></h3>
-                        <h3>State Disablity (1% * .01) <input type="text" id="state" placeholder="$"></h3>
-                        <h3>Retirement Investment (5% * .05) <input type="text" id="retirement" placeholder="$"></h3>
-                        <h3>Medical Insurance ($180.00) <input type="text" id="Medical" placeholder="$">
+                        <h3>Medicare (1.45% * .014) <input type="text" id="medicare" placeholder="$" disabled></h3>
+                        <h3>State Disablity (1% * .01) <input type="text" id="state" placeholder="$" disabled></h3>
+                        <h3>Retirement Investment (5% * .05) <input type="text" id="retirement" placeholder="$"
+                                disabled></h3>
+                        <h3>Medical Insurance ($180.00) <input type="text" id="Medical" placeholder="$" disabled>
                         </h3>
-                        <h3>Total deductions<input type="text" id="deductions" placeholder="$">
+                        <h3>Total deductions<input type="text" id="deductions" placeholder="$" disabled>
                         </h3>
                         </h3>
                         <div class="nums">
                             <div class="nums-cont">
                                 <h3>
-                                    <input type="text" id="GMI" placeholder="$">
+                                    <input type="text" id="GMI" placeholder="$" disabled>
                                 </h3>
                                 <h3>
-                                    <input type="text" id="TD" placeholder="$">
+                                    <input type="text" id="TD" placeholder="$" disabled>
                                 </h3>
                                 <h3>
-                                    <input type="text" id="total-amount" placeholder="$">
+                                    <input type="text" id="total-amount" placeholder="$" disabled>
                                 </h3>
                             </div>
                         </div>
@@ -105,8 +114,6 @@
                                 Net Monthly Income
                             </h3>
                         </div>
-
-
                     </div>
                 </div>
                 </div>
@@ -114,35 +121,40 @@
             <section class="box6">
                 <div class="container-check">
                     <div class="info-container-check">
-                        <table border="10" cellspacing="2" cellpadding="1"> 
-                            <caption>
-                            </caption>
-                            <tbody>
-                                <tr>
-                                  <th scope="col"> Date </th>
-                                  <th scope="col">Transaction</th>
-                                  <th scope="col">Withdrawl</th>
-                                  <th scope="col">Deposite</th>
-                                  <th>Total</th>
+                        <table class="Table-check" border="10" cellspacing="2" cellpadding="1">
+                            <tbody id="Checkbook">
+                                <tr class="CheckbookBox" id="Row0">
+                                    <th scope="col" id="0Col-1"> Date </th>
+                                    <th scope="col" id="0Col0">Transaction</th>
+                                    <th scope="col" id="0Col1">Withdrawl</th>
+                                    <th scope="col" id="0Col2">Deposite</th>
+                                    <th id="0Col3">Total</th>
                                 </tr>
-                                <tr>
-                                  <td><input type="date" name="" id="Calender"></td>
-                                  <td><input type="text" placeholder="Transaction Description"></td>
-                                  <td><input type="text" placeholder="Clothes, food, etc.."></td>
-                                  <td><input type="text" placeholder="Gifts, Checks, etc..."></td>
-                                  <td><input type="text" placeholder="Total Amount"></td>
+                                <tr class="CheckbookBox" id="Row1">
+                                    <td><input type="date" name="" id="1Col-1"></td>
+                                    <td><input type="text" id="1Col0" placeholder="Transaction Description"></td>
+                                    <td><input type="number" id="1Col1"></td>
+                                    <td><input type="number" id="1Col2"></td>
+                                    <td><input type="text" id="1Col3" placeholder="Total Amount" disabled></td>
                                 </tr>
-                            ...
                             </tbody>
-                            </table>
+                        </table>
                     </div>
                 </div>
             </section>
         </section>
-        <!-- This was a test with classmate
-        <section class="messing">
-            <img src="images/nether-portal.gif" alt="">
-        </section>  -->
+        <hr>
+        <footer>
+            <div class="footer-content">
+                <h3>Job-A-Job</h3>
+            </div>
+            <div class="footer-content2">
+                <h3>Plan More, Think Less</h3>
+            </div>
+            <div class="footer-content3">
+                <p>©Job-a-Job2023</p>
+            </div>
+        </footer>
     </main>
     <script type="text/javascript" src="budget.js"></script>
 </body>

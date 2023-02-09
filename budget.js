@@ -118,27 +118,132 @@ function calculate(){
     gmiInput.value = grossMonthly;
     tdInput.value = deductInput.value;
     totalInput.value = Number(grossMonthly) - Number(deductInput.value);
+    NetCheckPayment()
 }
 
-
+/*
 const withdrawlInput = document.getElementById('Withdrawl');
 const depositsInput = document.getElementById('Deposit');
 const GrandTotalInput = document.getElementById('T-Balance')
 
-GrandTotalInput.addEventListener('input', addingtotal)
+GrandTotalInput.addEventListener('change', addingtotal)
 
-function addingtotal() {
-    let sum = 0;
-    let total = document.querySelectorAll("Withdrawl");
-    for(let i = 0; i < withdrawlInput.length; i++) {
-        sum = sum + parseInt(Withdrawl[i].innerText);
-    }
-    console.log(sum)
-    const tbody = document.getElementById('Balance');
-    console.log(tbody)
-    const row = document.createElement("tr");
-    row.innerText = '<td> Gran - Total </td><td data-ns-test="grandTotal">' + sum + '</td>';
-    tbody.appendChild(row)
+function addingtotal () {
+    withdrawlInput.value = GrandTotalInput
+    withdrawlInput.value = GrandTotalInput.options[GrandTotalInput.selectedIndex].text
+}
+*/
+let Checkbook = document.getElementById("Checkbook");
+let rows = document.getElementsByClassName("CheckbookBox");
+function createNewCheck(){
+    rows = document.getElementsByClassName("CheckbookBox");
+    let rowNumber = rows.length;
+    let row;
+    let Calandar;
+    let Description;
+    let Withdrawl;
+    let Deposit;
+    let Balance;
+    let CalandarTd;
+    let DescriptionTd;
+    let WithdrawlTd;
+    let DepositTd;
+    let BalanceTd;
+    row = document.createElement('Tr')
+    row.setAttribute('id',`Row${rowNumber}`)
+    row.setAttribute('class',`CheckbookBox`)
+    Calandar = document.createElement('input')
+    Calandar.setAttribute('id',`${rowNumber}Col-1`)
+    Calandar.setAttribute('type',`date`)
+    Description = document.createElement('input')
+    Description.setAttribute('id',`${rowNumber}Col0`)
+    Description.setAttribute('placeholder','Transaction Description');
+    Description.addEventListener("change", (e) => doCalcCheck());
+    Withdrawl = document.createElement('input')
+    Withdrawl.setAttribute('id',`${rowNumber}Col1`)
+    Withdrawl.setAttribute('type',`number`)
+    //Withdrawl.setAttribute('placeholder','Clothes, food, etc..');
+    Withdrawl.addEventListener("change", (e) => doCalcCheck());
+    Deposit = document.createElement('input')
+    Deposit.setAttribute('id',`${rowNumber}Col2`)
+    Deposit.setAttribute('type',`number`)
+    //Deposit.setAttribute('placeholder','Gifts, Checks, etc..');
+    Deposit.addEventListener("change", (e) => doCalcCheck());
+    Balance = document.createElement('input')
+    Balance.setAttribute('id',`${rowNumber}Col3`)
+    Balance.setAttribute('disabled', '')
+    Balance.setAttribute('placeholder','Total Amount');
+    
+    CalandarTd = document.createElement("Td");
+    DescriptionTd = document.createElement("Td");
+    WithdrawlTd = document.createElement("Td");
+    DepositTd = document.createElement("Td");
+    BalanceTd = document.createElement("Td");
+
+    CalandarTd.appendChild(Calandar);
+    DescriptionTd.appendChild(Description);
+    WithdrawlTd.appendChild(Withdrawl);
+    DepositTd.appendChild(Deposit);
+    BalanceTd.appendChild(Balance);
+
+
+    row.appendChild(CalandarTd);
+    row.appendChild(DescriptionTd);
+    row.appendChild(WithdrawlTd);
+    row.appendChild(DepositTd);
+    row.appendChild(BalanceTd);
+
+    Checkbook.appendChild(row);
 }
 
+function doCalcCheck(){
+    for(let i = 2;i<rows.length;i++){
+        CheckCalc(i)
+    }
+}
 
+function CheckCalc(row){
+    rows = document.getElementsByClassName("CheckbookBox");
+    let Description;
+    let Withdrawl;
+    let Deposit;
+    let Balance;
+    let prevVal;
+    eval(`Description = document.getElementById("${row}Col0");`);
+    eval(`Withdrawl = document.getElementById("${row}Col1");`);
+    eval(`Deposit = document.getElementById("${row}Col2");`);
+    eval(`Balance = document.getElementById("${row}Col3");`);
+
+    let WithdrawlV = Withdrawl.value;
+    if(Withdrawl.value==""){
+        WithdrawlV = 0;
+    }
+
+    let DepositV = Deposit.value;
+    if(Deposit.value==""){
+        DepositV = 0;
+    }
+
+    if(row == 1){
+        prevVal = document.getElementById("total-amount").value;
+    }else{
+        eval(`prevVal = document.getElementById("${row-1}Col3").value;`);
+    }
+    Balance.value = "$".concat((parseFloat(prevVal.replace("$",""))-parseFloat(WithdrawlV)+parseFloat(DepositV)).toFixed(2));
+
+    if(row == rows.length-1){
+        if(WithdrawlV!=0 || DepositV!=0 || Description.value!=""){
+            createNewCheck();
+        }
+    }
+}
+
+function NetCheckPayment(){
+    let Deposit = document.getElementById("1Col2");
+    let Balance = document.getElementById("1Col3");
+    Deposit.value = parseFloat(document.getElementById("total-amount").value.replace("$",""))
+    Balance.value = "$".concat(parseFloat(document.getElementById("total-amount").value.replace("$","")))
+}
+
+createNewCheck();
+  
